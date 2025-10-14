@@ -3,6 +3,7 @@
 import { Hero } from '@/components/Hero';
 import { CourseCard } from '@/components/CourseCard';
 import { LatestVideos } from '@/components/LatestVideos';
+import { PopularPosts } from '@/components/PopularPosts';
 import { FiDatabase, FiShoppingCart, FiHeadphones, FiMail, FiCode, FiPackage } from 'react-icons/fi';
 
 const featuredCourses = [
@@ -77,6 +78,9 @@ export default function Home() {
 
       {/* Latest Videos Section */}
       <LatestVideos />
+
+      {/* Popular Posts Section */}
+      <PopularPosts />
 
       {/* Why Learn Salesforce Section */}
       <section className="py-20">
