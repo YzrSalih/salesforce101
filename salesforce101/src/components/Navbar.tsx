@@ -5,11 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { FaYoutube } from 'react-icons/fa';
 
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'Blog', path: '/blog' },
   { name: 'Courses', path: '/courses' },
+  { name: 'Videos', path: '/videos' },
   { name: 'Resources', path: '/resources' },
   { name: 'About', path: '/about' },
 ];
@@ -67,8 +69,19 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
+          {/* Theme Toggle, YouTube & Mobile Menu Button */}
+          <div className="flex items-center space-x-2">
+            {/* YouTube Link */}
+            <a
+              href="https://www.youtube.com/@salesforce101"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-600 transition-colors"
+              aria-label="YouTube Channel"
+            >
+              <FaYoutube size={22} />
+            </a>
+
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

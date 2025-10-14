@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { FiGithub, FiTwitter, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FaYoutube } from 'react-icons/fa';
 
 const footerLinks = {
   product: [
     { name: 'Blog', href: '/blog' },
     { name: 'Courses', href: '/courses' },
+    { name: 'Videos', href: '/videos' },
     { name: 'Resources', href: '/resources' },
   ],
   company: [
@@ -21,10 +23,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: FiGithub, href: 'https://github.com', label: 'GitHub' },
-  { icon: FiTwitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: FiLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: FiMail, href: 'mailto:contact@salesforce101.com', label: 'Email' },
+  { icon: FaYoutube, href: 'https://www.youtube.com/@salesforce101', label: 'YouTube', color: 'hover:text-red-600' },
+  { icon: FiGithub, href: 'https://github.com', label: 'GitHub', color: '' },
+  { icon: FiTwitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
+  { icon: FiLinkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-700' },
+  { icon: FiMail, href: 'mailto:contact@salesforce101.com', label: 'Email', color: '' },
 ];
 
 export function Footer() {
@@ -50,7 +53,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+                  className={`p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors ${social.color}`}
                   aria-label={social.label}
                 >
                   <social.icon size={20} />
