@@ -6,7 +6,13 @@
 			"label": "dev",
 			"command": "npm run dev",
 			"group": "build",
-			"isBackground": true
+			"isBackground": true,
+			"options": {
+				"cwd": "${workspaceFolder}/salesforce101",
+				"env": {
+					"PATH": "/opt/homebrew/opt/node@20/bin:${env:PATH}"
+				}
+			}
 		}
 	]
 }

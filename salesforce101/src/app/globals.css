@@ -1,8 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -49,16 +47,17 @@
     --input: 240 3.7% 15.9%;
     --ring: 205 100% 42%;
   }
-}
 
-@layer base {
+  /* Body base styles without @apply */
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0; /* Prevent white gaps around the navbar */
   }
 
   html {
@@ -66,18 +65,25 @@
   }
 }
 
+/* Removed the @theme block to prevent at-rule error */
+
+/* Utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
   
   .glass-effect {
-    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50;
+    background-color: rgba(255,255,255,0.8);
+    /* dark mode fallback set via prefers-color-scheme */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(229,231,235,0.5); /* gray-200/50 */
   }
-  
-  .gradient-bg {
-    background: linear-gradient(135deg, #0176D3 0%, #00A1E0 50%, #5867E8 100%);
-    background-size: 200% 200%;
+  @media (prefers-color-scheme: dark) {
+    .glass-effect {
+      background-color: rgba(17,24,39,0.8); /* gray-900/80 */
+      border-color: rgba(55,65,81,0.5); /* gray-700/50 */
+    }
   }
 }
 
@@ -86,29 +92,41 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: radial-gradient(60% 120% at 0% 0%, #1a0b3a 0%, #0b0727 40%, #07061a 100%);
+  width: 100%;
+  /* Solid fallback + gradient background like the screenshot */
+  background-color: #0b0727;
+  background-image: linear-gradient(90deg, #0b0727 0%, #1a0b3a 50%, #0b0727 100%);
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
-  padding: 8px 0;
+  padding: 10px 0;
+  margin: 0; /* no outer gaps */
 }
 
 .custom-navbar.scrolled {
-  background: rgba(11, 7, 39, 0.85);
+  background-color: rgba(11, 7, 39, 0.9);
+  background-image: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  padding: 6px 0;
+  padding: 8px 0;
+}
+
+/* Center container inside navbar */
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .navbar-link {
   position: relative;
   font-weight: 600;
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   transition: color 0.2s;
 }
 
 .navbar-link:hover,
 .navbar-link.active {
-  color: #fff;
+  color: #ffffff;
 }
 
 .navbar-link.active::after {
@@ -128,15 +146,15 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.85);
   color: #fff;
   font-size: 1.25rem;
   transition: all 0.2s;
 }
 
 .icon-link:hover {
-  border-color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.1);
+  border-color: #ffffff;
+  transform: scale(1.06);
 }
 
 .hamburger {
